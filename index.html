@@ -1,0 +1,228 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Discover destinations, plan trips, save favourites and organize your next adventure with TravelMate." />
+  <title>TravelMate | Plan Your Next Adventure</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <a href="#" class="logo"><span>✈</span> TravelMate</a>
+
+    <button class="menu-toggle" id="menuToggle"
+      aria-label="Toggle navigation" aria-expanded="false">
+      ☰
+    </button>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#destinations">Destinations</a>
+      <a href="#planner">Plan a Trip</a>
+      <a href="#my-trips">My Trips <span id="tripCount" class="nav-count">0</span></a>
+      <a href="#favorites">Favourites <span id="favoriteCount" class="nav-count">0</span></a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <span class="eyebrow">YOUR NEXT ADVENTURE STARTS HERE</span>
+        <h1>Explore the world.<br /><span>Make memories.</span></h1>
+        <p>Discover amazing places, create your itinerary and plan
+          unforgettable trips with TravelMate.</p>
+        <a href="#destinations" class="btn btn-primary">Explore Destinations →</a>
+      </div>
+
+      <div class="hero-stats">
+        <div><strong>12+</strong><span>Destinations</span></div>
+        <div><strong>Easy</strong><span>Trip Planning</span></div>
+        <div><strong>Free</strong><span>To Get Started</span></div>
+      </div>
+    </section>
+
+    <!-- Search and Destinations -->
+    <section class="section destinations-section" id="destinations">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">FIND YOUR NEXT ESCAPE</span>
+          <h2>Explore destinations</h2>
+          <p>Find a place that matches your travel dreams.</p>
+        </div>
+        <span class="result-label" id="resultCount">12 destinations</span>
+      </div>
+
+      <div class="search-row">
+        <div class="search-box">
+          <span>⌕</span>
+          <input type="search" id="searchInput"
+            placeholder="Search city or country..."
+            aria-label="Search destinations" />
+        </div>
+
+        <select id="sortSelect" aria-label="Sort destinations">
+          <option value="default">Recommended</option>
+          <option value="low">Price: Low to High</option>
+          <option value="high">Price: High to Low</option>
+          <option value="rating">Highest Rated</option>
+        </select>
+      </div>
+
+      <div class="filter-list" id="categoryFilters">
+        <button class="filter-btn active" data-category="All">All Places</button>
+        <button class="filter-btn" data-category="Beach">🏖️ Beach</button>
+        <button class="filter-btn" data-category="Mountain">🏔️ Mountain</button>
+        <button class="filter-btn" data-category="City">🏙️ City</button>
+        <button class="filter-btn" data-category="Nature">🌿 Nature</button>
+      </div>
+
+      <div class="destination-grid" id="destinationGrid"></div>
+      <div class="empty-state hidden" id="destinationEmpty">
+        <span>🧭</span>
+        <h3>No destinations found</h3>
+        <p>Try another search or choose a different category.</p>
+      </div>
+    </section>
+
+    <!-- Favourites -->
+    <section class="section favorites-section" id="favorites">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">YOUR WISHLIST</span>
+          <h2>Favourite destinations <span class="heading-count" id="favoriteHeadingCount">0</span></h2>
+          <p>Keep your dream destinations close at hand.</p>
+        </div>
+      </div>
+      <div class="favorite-list" id="favoriteList">
+        <p class="muted-message">You haven't saved any favourites yet.
+          Tap the heart on a destination to add one.</p>
+      </div>
+    </section>
+
+    <!-- Trip Planner -->
+    <section class="section planner-section" id="planner">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">MAKE IT HAPPEN</span>
+          <h2>Plan your next trip</h2>
+          <p>Enter your travel details and build your personal travel list.</p>
+        </div>
+      </div>
+
+      <div class="planner-layout">
+        <div class="planner-image">
+          <div class="planner-image-content">
+            <span>✦ YOUR JOURNEY, YOUR WAY</span>
+            <h3>Adventure is<br />waiting for you.</h3>
+            <p>A new destination is a new story.</p>
+          </div>
+        </div>
+
+        <form class="trip-form" id="tripForm">
+          <h3>Trip details</h3>
+
+          <div class="form-group">
+            <label for="tripName">Trip name</label>
+            <input type="text" id="tripName"
+              placeholder="e.g. Summer Vacation" maxlength="60" required />
+          </div>
+
+          <div class="form-group">
+            <label for="tripDestination">Destination</label>
+            <select id="tripDestination" required>
+              <option value="">Choose a destination</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="startDate">Start date</label>
+              <input type="date" id="startDate" required />
+            </div>
+            <div class="form-group">
+              <label for="endDate">End date</label>
+              <input type="date" id="endDate" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="tripBudget">Estimated total budget (₹)</label>
+            <input type="number" id="tripBudget"
+              placeholder="e.g. 25000" min="1" max="100000000" step="1" required />
+          </div>
+
+          <div class="form-group">
+            <label for="travelNotes">Notes (optional)</label>
+            <textarea id="travelNotes" rows="3" maxlength="500"
+              placeholder="Places to visit, activities, reminders..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary full-width">
+            + Save My Trip
+          </button>
+          <p class="form-note">Your trips are saved in this browser.</p>
+        </form>
+      </div>
+    </section>
+
+    <!-- Saved Trips -->
+    <section class="section trips-section" id="my-trips">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">YOUR TRAVEL DIARY</span>
+          <h2>My planned trips <span class="heading-count" id="tripHeadingCount">0</span></h2>
+          <p>All your upcoming adventures, organized in one place.</p>
+        </div>
+      </div>
+
+      <div class="trip-summary">
+        <div class="summary-card">
+          <span class="summary-icon">🧳</span>
+          <div><p>Total trips</p><strong id="totalTrips">0</strong></div>
+        </div>
+        <div class="summary-card">
+          <span class="summary-icon">💰</span>
+          <div><p>Total planned budget</p><strong id="totalBudget">₹0</strong></div>
+        </div>
+        <div class="summary-card">
+          <span class="summary-icon">📍</span>
+          <div><p>Destinations planned</p><strong id="uniqueDestinations">0</strong></div>
+        </div>
+      </div>
+
+      <div class="trip-list" id="tripList"></div>
+      <div class="empty-state" id="tripEmpty">
+        <span>🗺️</span>
+        <h3>Your travel story starts here</h3>
+        <p>Use the trip planner above to create your first trip.</p>
+        <a href="#planner" class="btn btn-outline">Plan a Trip</a>
+      </div>
+    </section>
+
+    <!-- Call to action -->
+    <section class="cta-section">
+      <span>🌍</span>
+      <h2>The world is waiting.</h2>
+      <p>Start planning today. Your next great memory is out there.</p>
+      <a href="#planner" class="btn btn-light">Plan Your Adventure →</a>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <a href="#home" class="logo"><span>✈</span> TravelMate</a>
+    <p>Made for explorers, dreamers and adventure seekers.</p>
+    <p class="copyright">© <span id="currentYear"></span> TravelMate. Personal travel planning project.</p>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
